@@ -9,7 +9,7 @@
 - some knowledge about shell script.
 
 ## Provisioning
-1. clone this repository. `git clone https://github.com/quasi-park/linux-kernel-provisioning/tree/master`
+1. clone this repository. `git clone https://github.com/quasi-park/linux-kernel-provisioning.git`
 1. run `./kernel_labs.sh`
 1. run `vagrant ssh` and cp `run_in_vm.sh` to virtual machine.
 1. run `./run_in_vm.sh`
