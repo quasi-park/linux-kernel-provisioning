@@ -1,32 +1,18 @@
 # A quick startup guide to constructing virtual machine
-## Creating disk image
-1. Open disk utility from application > others > diskutility
-1. From the top left bar, choose files > New image > Create new empty diskimage
-1. set the name to linux, with the partition size 8GB, use 'Apple extended Journal(case sensitive)'
-1. check if disk image has been mounted to /Volumes
+## Overview
+- This repository is a semi-auto provisioning I used for the virtual machine for [this fantastic website](https://linux-kernel-labs.github.io/master/labs/index.html).
+- intended for personal use only. Not to be used as commercial use.
 
-## Running shell script
-1. move in to /Volumes/linux and run the shell script `kernel-labs.sh`.
+## Prerequisites
+- vagrant and virtual box, and some knowledge about them.
+- macOS High Sierra. This provisioning only works for mac. Not tested on any other OS.
+- some knowledge about shell script.
 
-## constructing virtual machine
-1. after shell script has exited, run `vagrant init ubuntu/artful64`.
-1. Use the Vagrantfile in the git. Please comment out lines 59 ~ 64 before running `vagrant up`.
-1. after virtual machine has been built, `vagrant ssh` and see if virtual machine has successfully opened.
-1. logout from the virtual machine.
-1. uncomment the lines 59 ~ 64 in Vagrantfile, and run `vagrant reload`.
-1. in `/Volumes/linux/~/Documents/`, check if `kernellabs.vdi` has been successfully made.
-1. go back to /Volumes/linux and run `vagrant ssh` again.
-
-## mounting vdi to virtual machine
-1. run `sudo fdisk -l` and check if virtual disk is connected to `dev/sdb`.
-1. if this is your first time booting this machine, run `sudo mkfs -t ext4 /dev/sdb`
-1. in your home directory in the virutal machine, create a directory e.g)linux-kernel.
-1. run `sudo mount -t ext4 /dev/sdb linux-kernel`. This will mount the vdi to linux-kernel or whatever you named your directory.
-
-## Copying the data
-1. go into linux-kernel directory.
-    - TIP: if the owner of this directory has been changed to root, run `sudo chown vagrant:vagrant linux-kernel` and change back to your ownership.
-1. run `cp -r /vagrant/kernel-labs .`. this will copy the git data you have downloaded previously.
+## Provisioning
+1. clone this repository. `git clone https://github.com/quasi-park/linux-kernel-provisioning/tree/master`
+1. run `./kernel_labs.sh`
+1. run `vagrant ssh` and cp `run_in_vm.sh` to virtual machine.
+1. run `./run_in_vm.sh`
 1. go into the directory and enjoy kernel labs :)
     - TIP: you might want to `make clean` at `tools/labs` before doing `make boot`
 
